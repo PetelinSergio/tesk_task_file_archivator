@@ -6,7 +6,7 @@ from datetime import datetime
 # storage and archive paths
 RECORDS_STORAGE_PATH = "D:\\Programming\\test tasks\\task\\storage\\"
 RECORDS_ARCHIVE_PATH = "D:\\Programming\\test tasks\\task\\archive\\"
-LOG_PATH = "D:\\Programming\\task\\BankRussianStandart\\"
+LOG_PATH = "D:\\Programming\\test tasks\\task\\"
 # file extensions to be archived
 RECORDS_FILES_EXTENSIONS = (".wav", ".mp3")
 DISK_SPACE_LOW_LIMIT = 10
