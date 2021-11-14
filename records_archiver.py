@@ -47,7 +47,7 @@ def get_storage_free_space(storage_path: str) -> float:
     return free space in percents of storage disk
     """
     os.chdir(storage_path)
-    return shutil.disk_usage("/").free / shutil.disk_usage("/").total * 100
+    return round(shutil.disk_usage("/").free / shutil.disk_usage("/").total * 100, 2)
 
 def log(message: str) -> None:
     """
@@ -86,13 +86,13 @@ else:
         log(f"[ INFO ] records_archiver: no records older 90 days")
 
 # check disk space
-storage_free_space = round(get_storage_free_space(RECORDS_STORAGE_PATH), 2)
+storage_free_space = get_storage_free_space(RECORDS_STORAGE_PATH)
 if storage_free_space < DISK_SPACE_LOW_LIMIT:
     log(f"[ WARNING ] records_archiver: storage free space is lower then {DISK_SPACE_LOW_LIMIT} % = {storage_free_space} %")
     if len(records) > 0:
         while storage_free_space < DISK_SPACE_LOW_LIMIT:
             archive_record(records[record_index])
-            storage_free_space = round(get_storage_free_space(RECORDS_STORAGE_PATH), 2)
+            storage_free_space = get_storage_free_space(RECORDS_STORAGE_PATH)
             record_index += 1
             if record_index >= len(records):
                 break
